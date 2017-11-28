@@ -10,6 +10,7 @@ public class NodeReport {
      */
     private HashMap<String, Node> nodes = new HashMap<>();
     private ArrayList<Notification> notifications = new ArrayList<Notification>();
+    final static long SYNCHRONISED_TIME = 50;
 
     /**
      * This method will be used to start the process by collecting the notifications,
@@ -102,14 +103,14 @@ public class NodeReport {
 
         //check notifications before until range of 50ms reached or the start of the array reached
         int j= index-1;
-        while(j >= 0 && Math.abs(notifications.get(index).getNotifGenerated()-notifications.get(j).getNotifGenerated())<=50) {
+        while(j >= 0 && Math.abs(notifications.get(index).getNotifGenerated()-notifications.get(j).getNotifGenerated())<=SYNCHRONISED_TIME) {
             if(checkClash(notifications.get(index), notifications.get(j))) return true;
             j--;
         }
 
         //check notifications after until range of 50ms reached or the end of the array reached
         j= index+1;
-        while((j < notifications.size()) && Math.abs(notifications.get(index).getNotifGenerated()-notifications.get(j).getNotifGenerated())<=50) {
+        while((j < notifications.size()) && Math.abs(notifications.get(index).getNotifGenerated()-notifications.get(j).getNotifGenerated())<=SYNCHRONISED_TIME) {
             if(checkClash(notifications.get(index), notifications.get(j))) return true;
             j++;
         }

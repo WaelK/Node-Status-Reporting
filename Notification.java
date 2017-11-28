@@ -1,4 +1,4 @@
-public class Notification implements Comparable{
+public class Notification implements Comparable<Notification>{
 
     /**
      * notifReceived: the timestamp when the notification was received local to the notification system
@@ -79,7 +79,7 @@ public class Notification implements Comparable{
      * Used to sort the list of nodes by the time the notification was generated
      */
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Notification o) {
 
         long thisTime = this.getNotifGenerated();
         long paramTime = 0;
